@@ -1,5 +1,5 @@
 { "name": "ubborg-setup-nullmailer-pmb",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Config template for my nullmailer setup.",
   "keywords": [],
 
@@ -18,36 +18,23 @@
 
   "main": "setup.mjs",
   "exports": "./setup.mjs",
-  "scripts": {
-    "lint": "elp",
-    "test": "elp && nodemjs test/all.mjs"
-  },
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
+  "scripts": { "test": "elp && nodemjs test/all.mjs" },
+  "directories": { "test": "test" },
   "eslintConfig": { "extends": "nodejs-pmb" },
 
   "dependencies": {
-    "objpop": "^0.2.1",
-    "typechecks-pmb": "^0.200620.4",
+    "objpop": "^0.3.1",
+    "typechecks-pmb": "^0.200620.6",
     "ubborg-sysfacts-helper-pmb": "^0.2.1"
   },
-  "browser": {
-    "wipedisk": "./shims/wipedisk.js",
-    "./cfg/defaults.node.js": "./cfg/defaults.browsers.js",
-    "replaceMeWithEmptyObject": false,
-    "__SPEC__": "https://github.com/defunctzombie/package-browser-field-spec"
-  },
   "devDependencies": {
-    "eslint-config-nodejs-pmb": "^0.2.0",
-    "eslint-pretty-pmb": "^1.0.2",
-    "nodemjs": "^0.1.9"
+    "eslint-config-nodejs-pmb": "^0.3.4",
+    "eslint-plugin-json-light-pmb": "^1.0.7",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-pretty-pmb": "^1.0.5",
+    "nodemjs": "^0.1.13"
   },
-  "optionalDependencies": {}, "peerDependencies": {}, "bundledDependencies": [],
-  "browserify": { "transform": [ "brfs" ] },
-  "engines": { "npm": "*", "node": "*" }, "os": [], "cpu": [],
 
 
-  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+  "engines": { "npm": ">=7.0.0", "node": ">=16.0.0" }
 }

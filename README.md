@@ -28,6 +28,14 @@ This module exports one function:
   For details, please see the nullmailer docs.
 * `remotes`: Usually the hostname of a remote SMTP server.
   For details, please see the nullmailer docs.
+* `tryPreventOfflineLogSpam`: (boolean, default: `false`)
+  Nullmailer tends to spam system logs if it's running while your device is
+  offline. To help prevent this, we can install some overly simple if-up
+  hooks that will probably work for very simple network setups.
+  * __⚠ Beware: ⚠__
+    These hooks may stop or start nullmailer at unfortunate times when you
+    have virtual network devices or tunnels or docker network stuff.
+
 
 
 

@@ -6,7 +6,8 @@ import mustBe from 'typechecks-pmb/must-be';
 
 import pkgMeta from './package.json';
 
-async function setup(bun, opt) {
+
+const EX = async function setup(bun, opt) {
   const netCfg = await sysFactsHelper.mtd(bun, 'network')();
   const { fqdn, nullmailer } = netCfg;
   const how = { fqdn, ...nullmailer, ...opt };
@@ -21,10 +22,39 @@ async function setup(bun, opt) {
       'remotes',    // upstream SMTP server
     ].map(k => ({ path: '/etc/nullmailer/' + k, content: popOpt(k) })),
   ];
+
+  EX.maybeRegisterSimpleIfUpHooks(popHow, cfgFiles);
+
   popHow.done(pkgMeta.name + ': Unsupported options');
 
   await bun.needs('admTextLinesFile', cfgFiles);
   await bun.needs('debPkg', 'nullmailer');
-}
+};
 
-export default setup;
+
+Object.assign(EX, {
+
+
+  registerSimpleIfUpHooks(popHow, cfgFiles) {
+    // For description see README.md about this option:
+    const optName = 'tryPreventOfflineLogSpam';
+
+    const onlineOnly = popHow('bool | undef', optName);
+    if (!onlineOnly) { return; }
+
+    const h = function h(event, action) {
+      cfgFiles.push({
+        path: '/etc/network/if-' + event + '.d/nullmailer.sh',
+        content: '#!/bin/sh\nsystemctl ' + action + ' nullmailer',
+      });
+    };
+    h('down', 'stop');
+    h('up', 'restart');
+  },
+
+
+});
+
+
+
+export default EX;

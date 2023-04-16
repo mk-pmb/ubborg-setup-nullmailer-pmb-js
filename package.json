@@ -1,5 +1,5 @@
 { "name": "ubborg-setup-nullmailer-pmb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Config template for my nullmailer setup.",
   "keywords": [],
 
@@ -17,7 +17,7 @@
   "private": false, "license": "ISC",
 
   "main": "setup.mjs",
-  "exports": "setup.mjs",
+  "exports": "./setup.mjs",
   "scripts": {
     "lint": "elp",
     "test": "elp && nodemjs test/all.mjs"

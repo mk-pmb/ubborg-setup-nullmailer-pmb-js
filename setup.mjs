@@ -35,7 +35,7 @@ const EX = async function setup(bun, opt) {
 Object.assign(EX, {
 
 
-  registerSimpleIfUpHooks(popHow, cfgFiles) {
+  maybeRegisterSimpleIfUpHooks(popHow, cfgFiles) {
     // For description see README.md about this option:
     const optName = 'tryPreventOfflineLogSpam';
 
